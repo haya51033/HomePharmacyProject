@@ -2,8 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,6 +108,48 @@
                     android:drawableTint="@color/colorPrimary"
                     android:drawablePadding="8dp"/>
 
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/line_shape"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:padding="8dp">
+                </LinearLayout>
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reminder_question"
+                        android:id="@+id/tvAdultNum"
+                        android:layout_marginTop="10dp"
+                        android:padding="8dp"/>
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/array_question"
+                        android:layout_marginTop="10dp"
+                        android:padding="8dp"
+                        android:background="@color/photo_placeholder"
+                        />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tvAnswer"
+                    android:hint="@string/reminder_answer"
+                    android:padding="8dp"
+                    android:background="@drawable/stroke"
+                    android:drawableStart="@drawable/ic_question_answer_black_24dp"
+                    android:drawableLeft="@drawable/ic_question_answer_black_24dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="8dp"/>
+
 
                 <Button
                     android:id="@+id/btnRegister"
@@ -120,7 +161,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:onClick="buttonOnClick1"/>
+                    />
+
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
