@@ -23,8 +23,7 @@ public class DB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + DataContract.UserEntry.TABLE_NAME + " (" +
-                DataContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
-                DataContract.UserEntry.COLUMN_USER_ID + " INTEGER NOT NULL, " +
+                DataContract.UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DataContract.UserEntry.COLUMN_FULL_NAME+ " TEXT NOT NULL, " +
                 DataContract.UserEntry.COLUMN_USER_NAME + " TEXT NOT NULL, " +
                 DataContract.UserEntry.COLUMN_EMAIL + " TEXT NOT NULL, " +
@@ -34,11 +33,8 @@ public class DB extends SQLiteOpenHelper {
                 " );";
 
 
-
-
         final String SQL_CREATE_MEMBERS_TABLE = "CREATE TABLE " + DataContract.MemberEntry.TABLE_NAME + " (" +
-                DataContract.MemberEntry._ID + " INTEGER PRIMARY KEY," +
-                DataContract.MemberEntry.COLUMN_MEMBER_ID+ " INTEGER NOT NULL, " +
+                DataContract.MemberEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DataContract.MemberEntry.COLUMN_MEMBER_NAME +" TEXT NOT NULL, " +
                 DataContract.MemberEntry.COLUMN_AGE +" INTEGER NOT NULL, " +
                 DataContract.MemberEntry.COLUMN_GENDER + " TEXT NOT NULL, " +
@@ -48,8 +44,7 @@ public class DB extends SQLiteOpenHelper {
                 " );";
 
         final String SQL_CREATE_DRUG_TABLE = "CREATE TABLE " + DataContract.DrugEntry.TABLE_NAME + " (" +
-                DataContract.DrugEntry._ID + " INTEGER PRIMARY KEY," +
-                DataContract.DrugEntry.COLUMN_DRUG_ID+ " INTEGER NOT NULL, " +
+                DataContract.DrugEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME_ARABIC+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_SCIENTIFIC_NAME+ " TEXT NOT NULL, " +
@@ -59,6 +54,7 @@ public class DB extends SQLiteOpenHelper {
                 DataContract.DrugEntry.COLUMN_EXPIRY_DATE+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_CONCENTRATION+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_TYPE+ " TEXT NOT NULL, " +
+                DataContract.DrugEntry.COLUMN_DRUG_TYPE_ARABIC+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_WARNINGS+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_DRUG_WARNINGS_ARABIC+ " TEXT NOT NULL, " +
                 DataContract.DrugEntry.COLUMN_SIDE_EFFECTS+ " TEXT NOT NULL, " +
@@ -71,23 +67,22 @@ public class DB extends SQLiteOpenHelper {
 
 
         final String SQL_CREATE_DRUG_LIST_TABLE = "CREATE TABLE " + DataContract.DrugListEntry.TABLE_NAME + " (" +
-                DataContract.DrugEntry._ID + " INTEGER PRIMARY KEY," +
-                DataContract.DrugListEntry.COLUMN_LIST_ID+ " INTEGER NOT NULL, " +
+                DataContract.DrugEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DataContract.DrugListEntry.COLUMN_DRUG_L_ID+ " INTEGER NOT NULL, " +
                 DataContract.DrugListEntry.COLUMN_MEMBER_L_ID+ " INTEGER NOT NULL, " +
                 DataContract.DrugListEntry.COLUMN_DRUG_START_DATE+ " TEXT NOT NULL, " +
                 DataContract.DrugListEntry.COLUMN_DRUG_END_DATE+ " TEXT NOT NULL, " +
                 DataContract.DrugListEntry.COLUMN_DRUG_DOSE_QUANTITY+ " TEXT NOT NULL, " +
                 DataContract.DrugListEntry.COLUMN_DRUG_DOSE_REPEAT+ " TEXT NOT NULL, " +
-                DataContract.DrugListEntry.COLUMN_DRUG_DOSE_DESCRIPTION+ " TEXT NOT NULL " +
+                DataContract.DrugListEntry.COLUMN_DRUG_DOSE_DESCRIPTION+ " TEXT NOT NULL, " +
+                DataContract.DrugListEntry.COLUMN_DRUG_FIRST_TIME + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
 
 
                 " );";
 
 
         final String SQL_CREATE_FIRST_AID_TABLE = "CREATE TABLE " + DataContract.FirstAidEntry.TABLE_NAME + " (" +
-                DataContract.FirstAidEntry._ID + " INTEGER PRIMARY KEY," +
-                DataContract.FirstAidEntry.COLUMN_FIRST_AID_ID+ " INTEGER NOT NULL, " +
+                DataContract.FirstAidEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DataContract.FirstAidEntry.COLUMN_FIRST_AID_TITLE+ " TEXT NOT NULL, " +
                 DataContract.FirstAidEntry.COLUMN_FIRST_AID_DESCRIPTION+ " TEXT NOT NULL, " +
                 DataContract.FirstAidEntry.COLUMN_FIRST_AID_LINK+ " TEXT NOT NULL, " +

@@ -14,14 +14,13 @@ public class DataContract {
     public static final String PATH_DRUG_LIST ="drug_list";
     public static final String PATH_FIRST_AID ="first_aid";
 
-
+    private DataContract(){}
     public static final class UserEntry implements BaseColumns {
 
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_USER).build();
 
         public static final String TABLE_NAME = "app_users_table";
-        public static final String COLUMN_USER_ID  = "user_id";
         public static final String COLUMN_USER_NAME  = "user_name";
         public static final String COLUMN_FULL_NAME = "full_name";
         public static final String COLUMN_EMAIL = "email";
@@ -35,7 +34,6 @@ public class DataContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_MEMBERS).build();
 
         public static final String TABLE_NAME = "app_members_table";
-        public static final String COLUMN_MEMBER_ID  = "member_id";
         public static final String COLUMN_MEMBER_NAME  = "member_name";
         public static final String COLUMN_EMAIL = "email";
         public static final String COLUMN_AGE = "age";
@@ -50,7 +48,6 @@ public class DataContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_DRUG).build();
 
         public static final String TABLE_NAME = "drugs_table";
-        public static final String COLUMN_DRUG_ID  = "drug_id";
         public static final String COLUMN_DRUG_COMMERCIAL_NAME  = "commercial_name";
         public static final String COLUMN_DRUG_SCIENTIFIC_NAME  = "scientific_name";
         public static final String COLUMN_DRUG_INDICATION = "indication";
@@ -79,7 +76,6 @@ public class DataContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_DRUG_LIST).build();
 
         public static final String TABLE_NAME = "drug_list_table";
-        public static final String COLUMN_LIST_ID  = "list_id";
         public static final String COLUMN_MEMBER_L_ID  = "member_list_id";
         public static final String COLUMN_DRUG_L_ID  = "drug_list_id";
         public static final String COLUMN_DRUG_START_DATE  = "start_date";
@@ -87,6 +83,7 @@ public class DataContract {
         public static final String COLUMN_DRUG_DOSE_REPEAT  = "drug_dose_repeat";
         public static final String COLUMN_DRUG_DOSE_QUANTITY  = "drug_dose_quantity";
         public static final String COLUMN_DRUG_DOSE_DESCRIPTION = "drug_dose_description";
+        public static final String COLUMN_DRUG_FIRST_TIME = "drug_first_time";
 
     }
 
@@ -96,7 +93,6 @@ public class DataContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_FIRST_AID).build();
 
         public static final String TABLE_NAME = "first_aid_table";
-        public static final String COLUMN_FIRST_AID_ID  = "first_aid_id";
         public static final String COLUMN_FIRST_AID_TITLE  = "first_aid_title";
         public static final String COLUMN_FIRST_AID_DESCRIPTION  = "first_aid_description";
         public static final String COLUMN_FIRST_AID_IMAGE  = "first_aid_image";

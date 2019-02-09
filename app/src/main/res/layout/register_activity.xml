@@ -46,7 +46,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:hint="@string/full_name"
-                    android:id="@+id/tvRFN"
+                    android:id="@+id/etRFN"
                     android:background="@drawable/stroke"
                     android:drawableStart="@drawable/ic_person_black_24dp"
                     android:drawableLeft="@drawable/ic_person_black_24dp"
@@ -55,8 +55,6 @@
                     android:layout_marginTop="10dp"
                     android:drawableTint="@color/colorPrimary"
                     />
-
-
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -66,15 +64,12 @@
                     android:ems="10"
                     android:background="@drawable/stroke"
                     android:padding="8dp"
-                    android:id="@+id/tvREmail"
+                    android:id="@+id/etREmail"
                     android:hint="@string/email"
                     android:drawableStart="@drawable/ic_email_black_24dp"
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="8dp"
                     android:drawableTint="@color/colorPrimary" />
-
-
-
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -82,7 +77,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/tvRUsername"
+                    android:id="@+id/etRUsername"
                     android:background="@drawable/stroke"
                     android:padding="8dp"
                     android:hint="@string/user_name"
@@ -90,8 +85,6 @@
                     android:drawableStart="@drawable/ic_perm_identity_black_24dp"
                     android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
                     android:drawablePadding="8dp"/>
-
-
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +92,7 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/tvRPassword"
+                    android:id="@+id/etRPassword"
                     android:hint="@string/password"
                     android:padding="8dp"
                     android:background="@drawable/stroke"
@@ -141,7 +134,7 @@
                     android:inputType="text"
                     android:ems="10"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/tvAnswer"
+                    android:id="@+id/etRAnswer"
                     android:hint="@string/reminder_answer"
                     android:padding="8dp"
                     android:background="@drawable/stroke"
@@ -149,8 +142,6 @@
                     android:drawableLeft="@drawable/ic_question_answer_black_24dp"
                     android:drawableTint="@color/colorPrimary"
                     android:drawablePadding="8dp"/>
-
-
                 <Button
                     android:id="@+id/btnRegister"
                     android:layout_width="fill_parent"
