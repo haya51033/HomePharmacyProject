@@ -1,9 +1,19 @@
 package com.example.android.homepharmacyproject.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.android.homepharmacyproject.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 
 import static android.content.ContentValues.TAG;
 
@@ -13,10 +23,13 @@ public class DB extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version
     private static final int DATABASE_VERSION = 1;
+    private Context context;
+
 
     // Constructor
     public DB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        context = this.context;
     }
 
     @Override
@@ -98,6 +111,98 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_DRUG_LIST_TABLE);
         db.execSQL(SQL_CREATE_FIRST_AID_TABLE);
         Log.i(TAG, "SQLite Created successfully !!! ");
+
+        ////////////// DRUG TABLE DATA FROM ML FILE ///////
+        ContentValues _Values = new ContentValues();
+        //Get xml resource file
+        Resources res = context.getResources();
+
+        //Open xml file
+        XmlResourceParser _xml = res.getXml(R.xml.drug_data);
+        try
+        {
+            //Check for end of document
+            int eventType = _xml.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                //Search for record tags
+                if ((eventType == XmlPullParser.START_TAG) &&(_xml.getName().equals("record"))){
+                    //Record tag found, now get values and insert record
+                    String _DRUG_COMMERCIAL_NAME =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME);
+                    String _DRUG_COMMERCIAL_NAME_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME_ARABIC);
+                    String _DRUG_SCIENTIFIC_NAME =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_SCIENTIFIC_NAME);
+                    String _DRUG_SCIENTIFIC_NAME_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_SCIENTIFIC_NAME_ARABIC);
+                    String _DRUG_INDICATION =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_INDICATION);
+                    String _DRUG_INDICATION_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_INDICATION_ARABIC);
+                    String _EXPIRY_DATE =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_EXPIRY_DATE);
+                    String _DRUG_CONCENTRATION =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_CONCENTRATION);
+                    String _DRUG_TYPE =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_TYPE);
+                    String _DRUG_TYPE_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_TYPE_ARABIC);
+                    String _DRUG_WARNINGS =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_WARNINGS);
+                    String _DRUG_WARNINGS_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_WARNINGS_ARABIC);
+                    String _SIDE_EFFECTS =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_SIDE_EFFECTS);
+                    String _SIDE_EFFECTS_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_SIDE_EFFECTS_ARABIC);
+                    String _PREGNENT_ALLOWED =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_PREGNENT_ALLOWED);
+                    String _DRUG_DESCRIPTION =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_DESCRIPTION);
+                    String _DRUG_DESCRIPTION_ARABIC =
+                            _xml.getAttributeValue(null, DataContract.DrugEntry.COLUMN_DRUG_DESCRIPTION_ARABIC);
+
+
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME, _DRUG_COMMERCIAL_NAME);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_COMMERCIAL_NAME_ARABIC,_DRUG_COMMERCIAL_NAME_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_SCIENTIFIC_NAME, _DRUG_SCIENTIFIC_NAME);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_SCIENTIFIC_NAME_ARABIC,_DRUG_SCIENTIFIC_NAME_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_INDICATION, _DRUG_INDICATION);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_INDICATION_ARABIC, _DRUG_INDICATION_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_EXPIRY_DATE,_EXPIRY_DATE);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_CONCENTRATION, _DRUG_CONCENTRATION);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_TYPE, _DRUG_TYPE);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_TYPE_ARABIC, _DRUG_TYPE_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_WARNINGS, _DRUG_WARNINGS);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_WARNINGS_ARABIC, _DRUG_WARNINGS_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_SIDE_EFFECTS, _SIDE_EFFECTS);
+                    _Values.put(DataContract.DrugEntry.COLUMN_SIDE_EFFECTS_ARABIC, _SIDE_EFFECTS_ARABIC);
+                    _Values.put(DataContract.DrugEntry.COLUMN_PREGNENT_ALLOWED, _PREGNENT_ALLOWED);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_DESCRIPTION, _DRUG_DESCRIPTION);
+                    _Values.put(DataContract.DrugEntry.COLUMN_DRUG_DESCRIPTION_ARABIC, _DRUG_DESCRIPTION_ARABIC);
+
+
+                    db.insert(DataContract.DrugEntry.TABLE_NAME, null, _Values);
+                }
+                eventType = _xml.next();
+            }
+        }
+        //Catch errors
+        catch (XmlPullParserException e)
+        {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        catch (IOException e)
+        {
+            Log.e(TAG, e.getMessage(), e);
+
+        }
+        finally
+        {
+            //Close the xml file
+            _xml.close();
+        }
+
 
 
     }

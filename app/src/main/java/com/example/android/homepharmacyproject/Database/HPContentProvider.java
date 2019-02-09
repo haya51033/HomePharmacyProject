@@ -38,8 +38,10 @@ public class HPContentProvider extends ContentProvider {
     public static UriMatcher buildUriMatcher(){
 
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-
+        // <schema>:// <authority> / <path>
+        // content://com.example.android.homepharmacyproject/USER_TABLE
         uriMatcher.addURI(DataContract.AUTHORITY, DataContract.PATH_USER, USERS);
+        // content://com.example.android.homepharmacyproject.database/USER_TABLE/15
         uriMatcher.addURI(DataContract.AUTHORITY, DataContract.PATH_USER + "/#", USER_WITH_ID);
 
         uriMatcher.addURI(DataContract.AUTHORITY, DataContract.PATH_MEMBERS, MEMBERS);
@@ -82,7 +84,12 @@ public class HPContentProvider extends ContentProvider {
                     try {
                         db.beginTransaction();
                         for (ContentValues value : values) {
-                            long id = db.insertWithOnConflict(DataContract.UserEntry.TABLE_NAME, null, value, SQLiteDatabase.CONFLICT_REPLACE);
+                            long id =
+                                    db.insertWithOnConflict(
+                                            DataContract.UserEntry.TABLE_NAME,
+                                            null,
+                                            value,
+                                            SQLiteDatabase.CONFLICT_REPLACE);
                             if (id > 0)
                                 insertCount++;
                         }
@@ -178,7 +185,9 @@ public class HPContentProvider extends ContentProvider {
         {
             case USERS:
             {
-                long id = db.insert(DataContract.UserEntry.TABLE_NAME,null,contentValues);
+                long id = db.insert(DataContract.UserEntry.TABLE_NAME,
+                        null,
+                        contentValues);
                 if(id > 0){
                     returnUri = ContentUris.withAppendedId(DataContract.UserEntry.CONTENT_URI, id);
 
