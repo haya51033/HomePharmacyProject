@@ -15,11 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.android.homepharmacyproject.Activity.HomeActivity;
 import com.example.android.homepharmacyproject.Activity.RegistrationActivity;
-import com.example.android.homepharmacyproject.Database.DB;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,8 +51,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //////CREATE DATABASE
-        DB dbHelper = new DB(this);
-        mDb = dbHelper.getWritableDatabase();
+       // DB dbHelper = new DB(this);
+       // mDb = dbHelper.getWritableDatabase();
 
         /////////////////
 
